@@ -1,0 +1,8 @@
+/* Osnovni stil */
+@import "tailwindcss/base";
+
+/* Komponente */
+@import "tailwindcss/components";
+
+/* Korisne klase */
+@import "tailwindcss/utilities";
