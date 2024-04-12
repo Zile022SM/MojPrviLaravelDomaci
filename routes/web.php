@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +17,6 @@ use Illuminate\Support\Carbon;
 |
 */
 
-Route::get('/', function () {
-    $date = Carbon::now()->format('d-m-Y H:i:s');
-    return view('welcome',['date' => $date]);
-})->name('welcome');
-
-Route::get('/shop', function () {
-    return view('shop');
-})->name('shop');
-
 Route::get('/about', function () {
     $msg = 'About';
     $msgStrana = 'stranica';
@@ -31,3 +25,8 @@ Route::get('/about', function () {
         'msgStrana' => $msgStrana
     ]);
 })->name('about');
+
+//Route::view('/contact', 'contact')->name('contact');
+Route::get('/contact', [ContactFormController::class, 'index'])->name('contact');
+Route::get('/',[HomepageController::class, 'index'])->name('welcome');
+Route::get('/shop',[ShopController::class, 'index'])->name('shop');

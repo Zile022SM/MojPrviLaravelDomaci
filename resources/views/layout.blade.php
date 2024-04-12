@@ -11,8 +11,11 @@
 <body>
     @include('navigation')
 
+    <div class="lg:container lg:mx-auto md:container md:mx-auto container mx-auto px-6">
     @yield('content')
-
+    </div>
+    
+    
     @include('footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>

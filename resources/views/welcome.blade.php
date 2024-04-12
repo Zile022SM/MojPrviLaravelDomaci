@@ -14,7 +14,24 @@
         </h3>
 
         <button class="bg-white font-bold rounded-full py-4 px-8 shadow-lg uppercase tracking-wider">
-          Pre Order
+          Pre Order {{$currentHour}}h  - {{$date}} 
+
+          @switch($currentHour)
+            @case($currentHour >0 && $currentHour < 12)
+                <p>Dobro jutro</p>
+                @break
+
+            @case($currentHour >12 && $currentHour < 20)
+                <p>Dobar dan</p>
+                @break
+
+            @case($currentHour >20 && $currentHour < 24)
+                <p>Dobro vece</p>
+                @break
+
+            @default
+                <p>Nepoznata vrednost</p>
+          @endswitch
         </button>
       </div>
     </div>
