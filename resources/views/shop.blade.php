@@ -7,7 +7,7 @@
    <ul>
     @foreach($products as $product)
      
-    <li>{{$product}} @if($product === 'Iphone 14' || $product === 'Xiaomi 12') <span class="text-green-500">Super cena</span> @endif</li>
+    <li>{{$product->name}} @if($product->name === 'Iphone 14' || $product->name === 'Xaomi 12') <span class="text-green-500">Super cena</span> @endif</li>
 
     @endforeach
    </ul>

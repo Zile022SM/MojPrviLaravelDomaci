@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -9,12 +10,19 @@ class ShopController extends Controller
     //
     public function index(){
 
-        $products = [
-            "Iphone 14",
-            "Samsung A52s",
-            "Xiaomi 12",
-            "Nokia 3310"
-        ];
+        Products::truncate();
+
+        for($i = 1; $i <=10; $i++){
+
+            Products::create([
+                'name' => 'Product ' . $i,
+                'price' => $i * 10,
+                'description' => 'Description ' . $i,
+                'amount' => $i
+            ]);
+        }
+
+        $products = Products::all();
         
         return view('shop',compact('products'));
     }
