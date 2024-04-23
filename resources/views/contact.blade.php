@@ -7,6 +7,11 @@
    <div class="sm:col-span-2">{{$contact->message}}</div><br>
 @endforeach
 
+@if (session('success'))
+    <div class="success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">

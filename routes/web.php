@@ -32,5 +32,6 @@ Route::get('/contact', [ContactFormController::class, 'index'])->name('contact')
 Route::get('/contact', [ContactFormController::class, 'allContacts'])->name('contact');
 Route::get('/',[HomepageController::class, 'index'])->name('welcome');
 Route::get('/shop',[ShopController::class, 'index'])->name('shop');
+Route::post('/send-contact',[ContactFormController::class, 'store'])->name('send-contact');
 
 //Route::get('/admin/all-contacts', [ContactFormController::class, 'allContacts']);

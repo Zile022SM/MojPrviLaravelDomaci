@@ -55,41 +55,47 @@
 
     
     </section>
-    <section class="bg-gray-100">
-      <div class="container mx-auto px-6 py-20">
-        <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">
-          Testimonials
-        </h2>
-        <div class="flex flex-wrap">
-          <div class="w-full md:w-1/3 px-2 mb-4">
-            <div class="bg-white rounded shadow py-2">
-              <p class="text-gray-800 text-base px-6 mb-5">Monitoring and tracking my health vitals anywhere I go and on any platform I use has never been easier.</p>
-              <p class="text-gray-500 text-xs md:text-sm px-6">John Doe</p>
-            </div>
-          </div>
-          <div class="w-full md:w-1/3 px-2 mb-4">
-            <div class="bg-white rounded shadow py-2">
-              <p class="text-gray-800 text-base px-6 mb-5">As an Athlete, this is the perfect product for me. I wear my Smart Health Monitoring Wristwatch everywhere I go, even in the bathroom since it's waterproof.</p>
-              <p class="text-gray-500 text-xs md:text-sm px-6">Jane Doe</p>
-            </div>
-          </div>
-          <div class="w-full md:w-1/3 px-2 mb-4">
-            <div class="bg-white rounded shadow py-2">
-              <p class="text-gray-800 text-base px-6 mb-5">I don't regret buying this wearble gadget. One of the best gadgets I own!.</p>
-              <p class="text-gray-500 text-xs md:text-sm px-6">James Doe</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section style="background-color: #667eea">
 
-    <h3 class="text-4xl font-bold text-center text-gray-800 mb-8 pt-12">Latest Products</h3>
-    <div class="-mx-4 flex flex-wrap p-8 md:grid md:grid-cols-3">
+    <section class="bg-gray-100">
+
+    <form method="POST" action="{{route('send-contact')}}" class="space-y-8">
+      @csrf
+          <div>
+              <label for="email" class=" mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
+              <input id="email" name="email"  class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com">
+              @error('email')
+                 <div class="text-red-500">{{ $message }}</div>
+              @enderror
+          </div>
+          <div>
+              <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
+              <input type="text" id="subject" name="subject"  class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you">
+              @error('subject')
+                 <div class="text-red-500">{{ $message }}</div>
+              @enderror
+          </div>
+          <div class="sm:col-span-2">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
+              <textarea id="message" rows="6" name="message" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+              @error('message')
+                <div class="text-red-500">{{ $message }}</div>
+              @enderror
+          </div>
+          <div>
+              <button type="submit" class="py-3 px-5  text-sm font-medium text-center text-white rounded-lg bg-blue-700 sm:w-fit hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mb-10">Send message</button>
+          </div>
+         
+      </form>
+    </section>
+
+
+    <section style="background-color: #667eea">
+      <h3 class="text-4xl font-bold text-center text-gray-800 mb-8 pt-12">Latest Products</h3>
+      <div class="-mx-4 flex flex-wrap p-8 md:grid md:grid-cols-3">
 
     @foreach($latestProducts as $product)
     
-    <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+    <div class="w-full px-4 md:w-1/2 lg:w-1/3 text-center">
         <div class="mb-9 rounded-xl py-8 px-7 shadow-md transition-all hover:shadow-lg sm:p-9 lg:px-6 xl:px-9">
             <div class="mx-auto mb-7 inline-block"><svg width="53" height="61" viewBox="0 0 53 61" fill="none"
                     xmlns="http://www.w3.org/2000/svg">

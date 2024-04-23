@@ -13,7 +13,7 @@ class HomepageController extends Controller
 
         $date = Carbon::now()->format('d.m.Y');
         $currentHour = Carbon::now('Europe/Belgrade')->format('H');
-        $latestProducts = Products::orderBy('id', 'desc')->take(6)->get();
+        $latestProducts = Products::orderByDesc('id')->take(6)->get();
         //dd($latestProducts);
         return view('welcome', compact('currentHour','date','latestProducts'));
     }
