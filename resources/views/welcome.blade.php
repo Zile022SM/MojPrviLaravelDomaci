@@ -36,6 +36,12 @@
             @default
                 <p>Laku noc!/p>
           @endswitch
+
+          @if (session('success'))
+            <div class="success text-green-500">
+               {{ session('success') }}
+            </div>
+          @endif
         </button>
       </div>
     </div>

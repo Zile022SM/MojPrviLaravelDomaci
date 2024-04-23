@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ShopController;
+use App\Models\Products;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +35,9 @@ Route::get('/contact', [ContactFormController::class, 'allContacts'])->name('con
 Route::get('/',[HomepageController::class, 'index'])->name('welcome');
 Route::get('/shop',[ShopController::class, 'index'])->name('shop');
 Route::post('/send-contact',[ContactFormController::class, 'store'])->name('send-contact');
+
+Route::get('/admin/store-product', [ProductsController::class, 'storeProduct'])->name('store-product');
+
+Route::post('/admin/insert-product', [ProductsController::class, 'insertProduct'])->name('insert-product');
 
 //Route::get('/admin/all-contacts', [ContactFormController::class, 'allContacts']);
