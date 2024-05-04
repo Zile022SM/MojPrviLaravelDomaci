@@ -39,5 +39,7 @@ Route::post('/send-contact',[ContactFormController::class, 'store'])->name('send
 Route::get('/admin/store-product', [ProductsController::class, 'storeProduct'])->name('store-product');
 
 Route::post('/admin/insert-product', [ProductsController::class, 'insertProduct'])->name('insert-product');
+Route::get('/admin/all-products', [ProductsController::class, 'allProducts'])->name('all-products');
+Route::delete('/admin/delete-product/{id}', [ProductsController::class, 'deleteProduct'])->name('delete-product');
 
 //Route::get('/admin/all-contacts', [ContactFormController::class, 'allContacts']);

@@ -32,4 +32,19 @@ class ProductsController extends Controller
 
        return redirect()->route('welcome')->with('success', 'Uspesno ste dodali proizvod');
    }
+
+
+   public function allProducts(){
+       
+       $products = Products::orderBy('id', 'desc')->get();
+
+       return view('admin-products', compact('products'));
+   }
+
+   public function deleteProduct($id){
+
+       Products::where('id', $id)->delete();
+
+       return redirect()->back()->with('success', 'Uspesno ste obrisali proizvod');
+   }
 }

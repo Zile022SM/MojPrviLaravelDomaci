@@ -34,7 +34,7 @@
                 @break
 
             @default
-                <p>Laku noc!/p>
+                <p>Laku noc!</p>
           @endswitch
 
           @if (session('success'))
