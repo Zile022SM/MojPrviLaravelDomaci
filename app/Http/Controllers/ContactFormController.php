@@ -7,17 +7,36 @@ use Illuminate\Http\Request;
 
 class ContactFormController extends Controller
 {
-    //
-
-    public function index(){
-        return view('contact');
-    }
+    
 
     public function allContacts(){
 
         $contacts = ContactModel::all();
 
         return view('contact', compact('contacts','contacts'));
+    }
+
+
+    public function adminContacts(){
+
+        $contacts = ContactModel::all();
+
+        return view('admin-contacts', compact('contacts'));
+    }
+
+    public function deleteContact($id){
+
+        $contact = ContactModel::find($id);
+
+        if($contact){
+
+            $contact->delete();
+
+            return redirect()->route('admin-contacts')->with('success', 'Uspesno ste obrisali korisnika');
+        }else{
+
+            return redirect()->route('admin-contacts')->with('error', 'Doslo je do greske');
+        }
     }
 
     public function store(Request $request){

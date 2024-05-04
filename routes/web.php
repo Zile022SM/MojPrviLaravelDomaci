@@ -30,16 +30,25 @@ Route::get('/about', function () {
 })->name('about');
 
 //Route::view('/contact', 'contact')->name('contact');
-Route::get('/contact', [ContactFormController::class, 'index'])->name('contact');
+//Route::get('/contact', [ContactFormController::class, 'index'])->name('contact');
 Route::get('/contact', [ContactFormController::class, 'allContacts'])->name('contact');
 Route::get('/',[HomepageController::class, 'index'])->name('welcome');
 Route::get('/shop',[ShopController::class, 'index'])->name('shop');
 Route::post('/send-contact',[ContactFormController::class, 'store'])->name('send-contact');
 
-Route::get('/admin/store-product', [ProductsController::class, 'storeProduct'])->name('store-product');
+/********************** ADMIN  *******************************/
 
+
+
+//PRODUCTS ROUTES
+
+Route::get('/admin/store-product', [ProductsController::class, 'storeProduct'])->name('store-product');
 Route::post('/admin/insert-product', [ProductsController::class, 'insertProduct'])->name('insert-product');
 Route::get('/admin/all-products', [ProductsController::class, 'allProducts'])->name('all-products');
 Route::delete('/admin/delete-product/{id}', [ProductsController::class, 'deleteProduct'])->name('delete-product');
 
-//Route::get('/admin/all-contacts', [ContactFormController::class, 'allContacts']);
+
+//CONTACT ROUTES
+
+Route::get('/admin/all-contacts', [ContactFormController::class, 'adminContacts'])->name('admin-contacts');
+Route::delete('/admin/delete-contact/{id}', [ContactFormController::class, 'deleteContact'])->name('delete-contact');
