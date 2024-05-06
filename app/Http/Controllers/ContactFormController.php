@@ -65,4 +65,30 @@ class ContactFormController extends Controller
 
     }
 
+    public function editContact($id){
+
+        $contact = ContactModel::findOrFail($id);
+
+        return view('admin-edit-contact', compact('contact'));
+    }
+
+    public function updateContact(Request $request, $id){
+
+        $request->validate([
+            'email' => 'required|email|max:255',
+            'subject' => 'required|max:255|min:3|string',
+            'message' => 'required|min:3|string|max:255',
+        ]);
+
+        $contact = ContactModel::findOrFail($id);
+
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->message = $request->message;
+        $contact->save();
+
+        return redirect()->route('admin-contacts')->with('success', 'Uspesno ste izmenili kontakt');
+
+    }
+
 }
