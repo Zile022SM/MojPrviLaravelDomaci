@@ -42,14 +42,14 @@ class ProductsController extends Controller
    }
 
 
-   public function editProduct($id){
+   public function editProduct(Products $product){
 
-       $product = Products::where('id', $id)->first();
+       //$product = Products::where('id', $id)->first();
 
        return view('admin-edit-product', compact('product'));
    }
 
-   public function updateProduct(Request $request, $id){
+   public function updateProduct(Request $request,Products $product){
 
        $request->validate([
            'name' => 'required|max:255|min:3|string',
@@ -58,7 +58,7 @@ class ProductsController extends Controller
            'amount' => 'required|numeric|int|gt:0',
        ]);  
 
-       $product = Products::findOrFail($id);
+      // $product = Products::findOrFail($id);
        $product->update($request->all());
 
        return redirect()->route('all-products')->with('success', 'Uspesno ste izmenili proizvod');

@@ -8,7 +8,7 @@
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Edit {{$product->name}}</h2>
 
-      <form method="POST" action="{{route('update-product', $product->id)}}" class="space-y-8">
+      <form method="POST" action="{{route('update-product', $product)}}" class="space-y-8">
          @csrf
          @method('POST')
           <div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\ContactFormController;
@@ -42,17 +43,24 @@ Route::post('/send-contact',[ContactFormController::class, 'store'])->name('send
 
 //PRODUCTS ROUTES
 
-Route::get('/admin/store-product', [ProductsController::class, 'storeProduct'])->name('store-product');
-Route::post('/admin/insert-product', [ProductsController::class, 'insertProduct'])->name('insert-product');
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/store-product', [ProductsController::class, 'storeProduct'])->name('store-product');
+    Route::post('/insert-product', [ProductsController::class, 'insertProduct'])->name('insert-product');
 
-Route::get('/admin/all-products', [ProductsController::class, 'allProducts'])->name('all-products');
-Route::delete('/admin/delete-product/{id}', [ProductsController::class, 'deleteProduct'])->name('delete-product');
-Route::get('/admin/edit-product/{id}', [ProductsController::class, 'editProduct'])->name('edit-product');
-Route::post('/admin/update-product/{id}', [ProductsController::class, 'updateProduct'])->name('update-product');
+    Route::get('/all-products', [ProductsController::class, 'allProducts'])->name('all-products');
+    Route::delete('/delete-product/{id}', [ProductsController::class, 'deleteProduct'])->name('delete-product');
+    Route::get('/edit-product/{product}', [ProductsController::class, 'editProduct'])->name('edit-product');
+    Route::post('/update-product/{product}', [ProductsController::class, 'updateProduct'])->name('update-product');
 
-//CONTACT ROUTES
+    //CONTACT ROUTES
 
-Route::get('/admin/all-contacts', [ContactFormController::class, 'adminContacts'])->name('admin-contacts');
-Route::get('/admin/edit-contact/{id}', [ContactFormController::class, 'editContact'])->name('edit-contact');
-Route::post('/admin/update-contact/{id}', [ContactFormController::class, 'updateContact'])->name('update-contact');
-Route::delete('/admin/delete-contact/{id}', [ContactFormController::class, 'deleteContact'])->name('delete-contact');
+    Route::get('/all-contacts', [ContactFormController::class, 'adminContacts'])->name('admin-contacts');
+    Route::get('/edit-contact/{id}', [ContactFormController::class, 'editContact'])->name('edit-contact');
+    Route::post('/update-contact/{id}', [ContactFormController::class, 'updateContact'])->name('update-contact');
+    Route::delete('/delete-contact/{id}', [ContactFormController::class, 'deleteContact'])->name('delete-contact');
+});
+
+
+
+
+require __DIR__.'/auth.php';
